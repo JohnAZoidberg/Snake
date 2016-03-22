@@ -3,7 +3,6 @@ import java.util.ArrayList;
 abstract public class Board {
     private double width;
     private double height;
-    protected ArrayList<Token> tokens = new ArrayList<>();
 
     public Board(double width, double height) {
         this.width = width;
@@ -14,9 +13,7 @@ abstract public class Board {
         return new Dimension(width, height);
     }
 
-    public ArrayList<Token> getTokens() {
-        return tokens;
-    }
+    abstract public ArrayList<Token> getTokens();
 
     abstract public void handleKeys(ArrayList<String> keys);
 }

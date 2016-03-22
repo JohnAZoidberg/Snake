@@ -1,12 +1,12 @@
 import javafx.scene.paint.Color;
 
-public class Head extends Token implements Playable {
-    private Head(Board board, Position position, Color color) {
+public class SuperSnake extends Token implements Playable {
+    private SuperSnake(Board board, Position position, Color color) {
         super(board, position, color);
     }
 
-    public Head(Board board, Position position) {
-        super(board, position, Color.BLUE);
+    public SuperSnake(Board board, Position position) {
+        super(board, position, Color.DARKGOLDENROD);
     }
 
     public void move(Action action) {
@@ -14,22 +14,22 @@ public class Head extends Token implements Playable {
         switch (action) {
             case UP:
                 if (position.getY() > 0) {
-                    position.addPosition(new Position(0, -1));
+                    position.addPosition(new Position(0, -2));
                 }
                 break;
             case DOWN:
                 if (position.getY() + 1 < grid.getHeight()) {
-                    position.addPosition(new Position(0, 1));
+                    position.addPosition(new Position(0, 2));
                 }
                 break;
             case LEFT:
                 if (position.getX() > 0) {
-                    position.addPosition(new Position(-1, 0));
+                    position.addPosition(new Position(-2, 0));
                 }
                 break;
             case RIGHT:
                 if (position.getX() + 1 < grid.getWidth()) {
-                    position.addPosition(new Position(1, 0));
+                    position.addPosition(new Position(2, 0));
                 }
                 break;
         }
