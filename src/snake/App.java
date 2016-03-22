@@ -1,3 +1,9 @@
+package snake;
+
+import engine.Board;
+import engine.Dimension;
+import engine.Position;
+import engine.Token;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -42,8 +48,8 @@ public class App extends Application {
             public void handle(long currentNanoTime) {
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
                 board.handleKeys(input);
-                setupBoard(gc, board, dim.getWidth(), dim.getHeight());
-                redrawBoard(gc, board);
+                drawBoard(gc, board, dim.getWidth(), dim.getHeight());
+                drawTokens(gc, board);
             }
         }.start();
 
@@ -52,32 +58,26 @@ public class App extends Application {
 
     private void setScene(Group root) {
         Scene theScene = new Scene(root);
-        theScene.setOnKeyPressed(
-                new EventHandler<KeyEvent>()
-                {
-                    public void handle(KeyEvent e)
-                    {
-                        String code = e.getCode().toString();
+        theScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e){
+                String code = e.getCode().toString();
 
-                        // only add once... prevent duplicates
-                        if ( !input.contains(code) )
-                            input.add( code );
-                    }
-                });
+                // only add once... prevent duplicates
+                if (!input.contains(code))
+                    input.add( code );
+            }
+        });
 
-        theScene.setOnKeyReleased(
-                new EventHandler<KeyEvent>()
-                {
-                    public void handle(KeyEvent e)
-                    {
-                        String code = e.getCode().toString();
-                        input.remove( code );
-                    }
-                });
+        theScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e) {
+                String code = e.getCode().toString();
+                input.remove( code );
+            }
+        });
         primaryStage.setScene(theScene);
     }
 
-    private void setupBoard(GraphicsContext gc, Board b, double width, double height) {
+    private void drawBoard(GraphicsContext gc, Board b, double width, double height) {
         gc.clearRect(0, 0, width * RES, height * RES);
         gc.setStroke(Color.RED);
         gc.setLineWidth(1);
@@ -94,8 +94,7 @@ public class App extends Application {
         }
     }
 
-    private void redrawBoard(GraphicsContext gc, Board board) {
-        Dimension grid = board.getGridSize();
+    private void drawTokens(GraphicsContext gc, Board board) {
         ArrayList<Token> tokens = board.getTokens();
         for (Token token : tokens) {
             Position pos = token.getPosition();

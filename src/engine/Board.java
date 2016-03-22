@@ -1,3 +1,5 @@
+package engine;
+
 import java.util.ArrayList;
 
 abstract public class Board {
@@ -20,7 +22,7 @@ abstract public class Board {
     abstract public ArrayList<Token> getTokens();
 
     /**
-     * This gets called by the App with a list of currently active keys.
+     * This gets called by the snake.App with a list of currently active keys.
      *
      * @param keys that are currently pushed down.
      */

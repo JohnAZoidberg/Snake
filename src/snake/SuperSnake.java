@@ -1,3 +1,9 @@
+package snake;
+
+import engine.Action;
+import engine.Board;
+import engine.PlayableToken;
+import engine.Position;
 import javafx.scene.paint.Color;
 
 public class SuperSnake extends PlayableToken {

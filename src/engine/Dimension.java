@@ -1,3 +1,5 @@
+package engine;
+
 public class Dimension extends Tuple<Double> {
     public Dimension(double width, double height) {
         super(width, height);

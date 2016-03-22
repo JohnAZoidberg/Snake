@@ -1,3 +1,10 @@
+package snake;
+
+import engine.Action;
+import engine.Board;
+import engine.Position;
+import engine.Token;
+
 import java.util.ArrayList;
 
 public class SnakeBoard extends Board {

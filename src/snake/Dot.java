@@ -1,6 +1,11 @@
+package snake;
+
+import engine.Board;
+import engine.Position;
+import engine.Token;
 import javafx.scene.paint.Color;
 
-public class Dot extends Token{
+public class Dot extends Token {
     public Dot(Board board, Position position, Color color) {
         super(board, position, color);
     }
