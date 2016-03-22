@@ -29,6 +29,7 @@ public class SnakeBoard extends Board {
         }
         head.act(action);
         supersnake.act(action);
+        action = Action.NOTHING;
 
         // check for action
         // in a separate if block because movement and actions can occur in parallel
