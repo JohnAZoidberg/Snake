@@ -1,6 +1,6 @@
 import javafx.scene.paint.Color;
 
-public class Token {
+abstract public class Token {
     protected Position position;
     private Color color;
     private Board board;

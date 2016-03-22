@@ -1,6 +1,6 @@
 import javafx.scene.paint.Color;
 
-public class SuperSnake extends Token implements Playable {
+public class SuperSnake extends PlayableToken {
     private SuperSnake(Board board, Position position, Color color) {
         super(board, position, color);
     }
@@ -9,7 +9,7 @@ public class SuperSnake extends Token implements Playable {
         super(board, position, Color.DARKGOLDENROD);
     }
 
-    public void move(Action action) {
+    public void act(Action action) {
         Dimension grid = getBoard().getGridSize();
         switch (action) {
             case UP:

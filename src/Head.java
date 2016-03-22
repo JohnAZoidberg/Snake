@@ -1,6 +1,6 @@
 import javafx.scene.paint.Color;
 
-public class Head extends Token implements Playable {
+public class Head extends PlayableToken {
     private Head(Board board, Position position, Color color) {
         super(board, position, color);
     }
@@ -9,7 +9,7 @@ public class Head extends Token implements Playable {
         super(board, position, Color.BLUE);
     }
 
-    public void move(Action action) {
+    public void act(Action action) {
         Dimension grid = getBoard().getGridSize();
         switch (action) {
             case UP:

@@ -16,6 +16,8 @@ public class SnakeBoard extends Board {
     @Override
     public void handleKeys(ArrayList<String> keys) {
         Action action = Action.NOTHING;
+        // check for movement
+        // else if because only one movement can occur at a time
         if (keys.contains("LEFT")) {
             action = Action.LEFT;
         } else if (keys.contains("RIGHT")) {
@@ -24,12 +26,18 @@ public class SnakeBoard extends Board {
             action = Action.UP;
         } else if (keys.contains("DOWN")) {
             action = Action.DOWN;
-        } else if (keys.contains("SPACE")) {
+        }
+        head.act(action);
+        supersnake.act(action);
+
+        // check for action
+        // in a separate if block because movement and actions can occur in parallel
+        if (keys.contains("SPACE")) {
             action = Action.SPACE;
         }
 
-        head.move(action);
-        supersnake.move(action);
+        head.act(action);
+        supersnake.act(action);
         keys.clear();
     }
 

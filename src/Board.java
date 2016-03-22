@@ -13,7 +13,16 @@ abstract public class Board {
         return new Dimension(width, height);
     }
 
+    /**
+     *
+     * @return the tokens which are to be drawn on screen
+     */
     abstract public ArrayList<Token> getTokens();
 
+    /**
+     * This gets called by the App with a list of currently active keys.
+     *
+     * @param keys that are currently pushed down.
+     */
     abstract public void handleKeys(ArrayList<String> keys);
 }
