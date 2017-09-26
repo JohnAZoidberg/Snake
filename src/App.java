@@ -1,5 +1,3 @@
-package snake;
-
 import engine.Board;
 import engine.Dimension;
 import engine.Position;
@@ -14,6 +12,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import snake.SnakeBoard;
 
 import java.util.ArrayList;
 
@@ -21,6 +20,8 @@ public class App extends Application {
     private static final double RES = 50.0;
     private Stage primaryStage;
     private ArrayList<String> input = new ArrayList<>();
+
+    int time = 0;
 
     public static void main(String[] args) {
         launch(args);
@@ -46,10 +47,36 @@ public class App extends Application {
         final long startNanoTime = System.nanoTime();
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
+                time++;
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-                board.handleKeys(input);
+
+                ArrayList<Board.Action> actions = new ArrayList<>();
+                actions.add(Board.Action.TOCK);
+                for (String key : input) {
+                    switch (key) {
+                      case "K":
+                      case "UP":
+                          actions.add(Board.Action.UP);
+                          break;
+                      case "J":
+                      case "DOWN":
+                          actions.add(Board.Action.DOWN);
+                          break;
+                      case "H":
+                      case "LEFT":
+                          actions.add(Board.Action.LEFT);
+                          break;
+                      case "L":
+                      case "RIGHT":
+                          actions.add(Board.Action.RIGHT);
+                          break;
+                    }
+                }
+                if (time % 10 == 0)
+                  board.step(actions);
                 drawBoard(gc, board, dim.getWidth(), dim.getHeight());
                 drawTokens(gc, board);
+                // System.out.println(time + " - " + time % 60 + ": " + t);
             }
         }.start();
 
@@ -61,17 +88,18 @@ public class App extends Application {
         theScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent e){
                 String code = e.getCode().toString();
+                System.out.println("Key pressed: " + code);
 
                 // only add once... prevent duplicates
                 if (!input.contains(code))
-                    input.add( code );
+                    input.add(code);
             }
         });
 
         theScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent e) {
                 String code = e.getCode().toString();
-                input.remove( code );
+                input.remove(code);
             }
         });
         primaryStage.setScene(theScene);
@@ -99,7 +127,7 @@ public class App extends Application {
         for (Token token : tokens) {
             Position pos = token.getPosition();
             Color color = token.getColor();
-            //System.out.print(color + ": (" + pos.getX() + ", " + pos.getY() + ")");
+            // System.out.print(color + ": (" + pos.getX() + ", " + pos.getY() + ")");
 
             gc.setFill(color);
             gc.setStroke(color);
@@ -109,6 +137,6 @@ public class App extends Application {
                     RES * 0.5, RES * 0.5
             );
         }
-        //System.out.println();
+        // System.out.println();
     }
 }

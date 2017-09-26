@@ -3,9 +3,9 @@ package engine;
 import javafx.scene.paint.Color;
 
 abstract public class Token {
-    protected Position position;
     private Color color;
     private Board board;
+    protected Position position;
 
     public Token(Board board, Position position, Color color) {
         this.board = board;

@@ -5,7 +5,6 @@ public class Position extends Tuple<Double> {
         super(x, y);
     }
 
-
     public double getX() {
         return left;
     }
@@ -22,5 +21,14 @@ public class Position extends Tuple<Double> {
     public void addPosition(Position newPos) {
         this.left += newPos.getX();
         this.right += newPos.getY();
+    }
+
+    public boolean equals(Position pos) {
+        return getX() == pos.getX() && getY() == pos.getY();
+    }
+
+    @Override
+    public String toString() {
+      return String.format("(%f, %f)", left, right);
     }
 }

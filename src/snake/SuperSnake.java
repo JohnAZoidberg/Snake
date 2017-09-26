@@ -1,10 +1,11 @@
 package snake;
 
-import engine.Action;
 import engine.Board;
 import engine.PlayableToken;
 import engine.Position;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 public class SuperSnake extends PlayableToken {
     private SuperSnake(Board board, Position position, Color color) {
@@ -15,7 +16,16 @@ public class SuperSnake extends PlayableToken {
         super(board, position, Color.DARKGOLDENROD);
     }
 
-    public void act(Action action) {
-        move(action, 2, false);
+    @Override
+    public void move(Direction direction) {
+        move(direction, 2, false);
+        if (((SnakeBoard) getBoard()).removeIntersectingDot(getPosition())) {
+            System.out.println("Eaten by SuperSnake");
+        }
+    }
+
+    @Override
+    public void act(ArrayList<Board.Action> actions) {
+
     }
 }
