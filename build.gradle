@@ -1,0 +1,38 @@
+plugins {
+  id 'application'
+  id 'java'
+  id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+java {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls' ]
+}
+
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+  main {
+    java {
+       srcDirs 'src'
+    }
+  }
+}
+
+mainClassName = "snake.App"
+
+jar {
+    baseName = 'Snake'
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
