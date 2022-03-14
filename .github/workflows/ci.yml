@@ -23,3 +23,9 @@ jobs:
       with:
         gradle-version: '7.4'
         arguments: build
+
+    - name: Save executable artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: build/libs/Snake-1.0.jar
+        name: Snake-1.0.jar
